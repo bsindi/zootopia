@@ -12,17 +12,31 @@ with open("animals_template.html", "r", encoding="utf-8") as f:
     template = f.read()
 
 
-# Generate string with animal information
+
+def serialize_animal(animal_obj):
+    """Serializes an animal object"""
+    output = ""
+    output += "<li class='cards__item'>"
+    output += f"<div class='card__title'>{animal_obj['name']}</div>\n"
+    output += "<div class='card__text'>\n"
+    output += "<ul>\n"
+    output += f"<li><strong>Diet:</strong> {animal_obj['characteristics']['diet']}</li>\n"
+    output += f"<li><strong>Location:</strong> {animal_obj['locations'][0]}</li>\n"
+    output += f"<li><strong>Type: </strong>{animal_obj['characteristics'].get('type', 'Unknown')}</li>\n"
+    output += "</ul>\n"
+    output += "</div>\n"
+    output += "</li>\n"
+    return output
+
+
+
 output = ""
 for animal in animals_data:
-    output += "<li class='cards__item'>"
-    output += f"<div class='card__title'>{animal['name']}</div>\n"
-    output += f"<p class='card__text'>\n"
-    output += f"<strong>Diet:</strong> {animal['characteristics']['diet']}<br/>\n"
-    output += f"<strong>Location:</strong> {animal['locations'][0]}<br/>\n"
-    output += f"<strong>Type: </strong>{animal['characteristics'].get('type', 'Unknown')}<br/>\n"
-    output += "</p>"
-    output += "</li>\n"
+    output += serialize_animal(animal)
+
+
+
+
 
 
 #Replace placeholder with animal data

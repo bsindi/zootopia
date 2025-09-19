@@ -15,11 +15,12 @@ with open("animals_template.html", "r", encoding="utf-8") as f:
 # Generate string with animal information
 output = ""
 for animal in animals_data:
-    output += f"Name: {animal['name']}\n"
-    output += f"Diet: {animal['characteristics']['diet']}\n"
-    output += f"Location: {animal['locations'][0]}\n"
-    output += f"Type: {animal['characteristics'].get('type', 'Unknown')}\n"
-    output += "\n"
+    output += '<li class="cards__item">'
+    output += f"Name: {animal['name']}<br/>\n"
+    output += f"Diet: {animal['characteristics']['diet']}<br/>\n"
+    output += f"Location: {animal['locations'][0]}<br/>\n"
+    output += f"Type: {animal['characteristics'].get('type', 'Unknown')}<br/>\n"
+    output += "</li>"
 
 
 #Replace placeholder with animal data
